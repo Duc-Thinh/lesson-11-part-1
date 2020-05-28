@@ -1,0 +1,34 @@
+extends ../common.pug
+block default
+  img(src="https://cdn.glitch.com/b6b24fc4-65e0-481c-9a0f-8d19f5732aaf%2Ffavicon.ico?v=1590645851125")
+  a(href="/books/create") New 
+  br
+  a(href="/transactions") Transactions
+  hr
+  form(action="/users", method="POST")
+    input(type="text", name="user", placeholder="Name user")
+    button create
+  form(action="/books/searchBook", method='GET')
+    input(type="text", name='q', placeholder="Title book")
+    button Search
+  ul
+  label Users
+  if lists
+    each user in lists
+      li
+        span= user.user
+        span &nbsp
+        a(href="/users/changeUser/"+user.id)  Change
+        span &nbsp
+        a(href="/users/deleteUser/"+user.id)  Delete
+  ul
+  label Books
+  if list
+    each book in list
+      li
+        span= book.title
+        span="-" + book.des
+        span &nbsp
+        a(href="/books/changeBook/"+book.id)  Change
+        span &nbsp
+        a(href="/books/"+book.id)  Delete
